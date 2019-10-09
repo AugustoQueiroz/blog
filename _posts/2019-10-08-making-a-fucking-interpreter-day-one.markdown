@@ -1,8 +1,8 @@
 ---
 layout: page
 title: "Making a F*cking Interpreter - Day One"
-date: 2019-10-09 00:35:00 +0200
-categories: C++ Project BrainF*ck
+date: 2019-10-08 23:35:00 +0200
+categories: dev project cpp
 ---
 
 This is a project that I've wanted to do for a very long time now, and the first in a three part series of possibly the dumbest possible project ideas. Still, it is interesting, and now I have the excuse of using it to better my C++ as I study it more deeply in class.
