@@ -51,7 +51,7 @@ And we'll also need a function to run a piece of code, which I called `run(std::
 
 So, finally, the class header looks like this:
 
-```C++
+```cpp
 class Interpreter {
     private:
         std::vector<int> tape;
