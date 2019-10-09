@@ -21,10 +21,7 @@
 title: Augusto's Blog
 email: asq@cin.ufpe.br
 description: >- # this means to ignore newlines until "baseurl:"
-    A place for me to throw my thoughts in about life, the universe, and,
-    most importantly, code and tech. Hopefully I'll get more ideas of interesting
-    things to write about and post, but if not, I'll try to challenge myself to
-    keep this busy.
+    My blog. Not much to say here. A place to share thoughts, and projects.
 baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "https://augustoqueiroz.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: augustosq
