@@ -5,7 +5,7 @@ date: 2019-10-08 23:35:00 +0200
 categories: dev project cpp
 ---
 
-*You can find the code for this project (and the result as well) on [https://github.com/AugustoQueiroz/fucking-interpreter](https://github.com/AugustoQueiroz/fucking-interpreter)*
+*You can find the code for this project (and the result as well) on [AugustoQueiroz/fucking-interpreter](https://github.com/AugustoQueiroz/fucking-interpreter)*
 
 This is a project that I've wanted to do for a very long time now, and the first in a three part series of possibly the dumbest possible project ideas. Still, it is interesting, and now I have the excuse of using it to better my C++ as I study it more deeply in class.
 
