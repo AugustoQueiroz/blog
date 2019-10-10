@@ -5,6 +5,8 @@ date: 2019-10-09 11:43:00 +0200
 categories: dev project cpp
 ---
 
+*You can find the code for this project (and the result as well) on [https://github.com/AugustoQueiroz/fucking-interpreter](https://github.com/AugustoQueiroz/fucking-interpreter)*
+
 So, yesteday I got the baseline for the project working: the skeleton of the class `Interpreter` and the functions for moving around the tape, incrementing and decrementing the value at the current position, executing a single operation, and running a program. So today the first two things to be done are quite clear: print the current value at the current position of the tape through the `.` operator, and loop through the `[]` operators. After that there are two things I need to work on: getting a program to be passed to the interpreter through the command line (as you do when you `$ python your-program.py`), and creating the interpreter interface (which has a real name I can't remember)(as you do when you just `$ python`).
 
 So, with goals defined we can go on to start...
