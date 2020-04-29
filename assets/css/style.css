@@ -29,14 +29,21 @@ body {
 	padding: 50px;
 }
 
-h2 {
+h1.title {
 	font-family: 'Lora', serif;
 	font-size: 35pt;
 	font-weight: 500;
 	margin-bottom: 0;
 }
 
-h3 {
+h2 {
+	font-size: 20pt;
+	color: #676C6C;
+	font-family: 'Lora', serif;
+}
+
+h2.subtitle {
+	font-family: 'Inter', sans-serif;
 	font-size: 20pt;
 	font-weight: normal;
 	color: #676C6C;
@@ -117,11 +124,11 @@ div#content ul#posts li a div {
 	padding-bottom: 10px;
 }
 
-div#content ul#posts li a h2 {
+div#content ul#posts li a h1 {
 	margin: 0;
 }
 
-div#content ul#posts li a h3 {
+div#content ul#posts li a h2 {
 	font-weight: normal;
 }
 
