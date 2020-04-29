@@ -164,6 +164,7 @@ div#content div.quote {
 	font-size: 16pt;
 	text-align: justify;
 	color: #515757;
+	line-height: 150%;
 }
 
 div#content code {
