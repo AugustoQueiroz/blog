@@ -14,6 +14,10 @@ html {
 	--dark: #272D2D;
 	--yellow: #FFE74C;
 	--green: #01AF75;
+	--red: #DF2935;
+	--blue: #5BC3EB;
+	--pink: #FF99C9;
+	--teal: #4ECDC4;
 }
 
 body {
@@ -143,4 +147,58 @@ div#content p {
 	font-size: 16pt;
 	text-align: justify;
 	line-height: 150%;
+}
+
+div#content div.quote {
+	width: 80%;
+	margin: 50px auto;
+	font-family: 'Lora', serif;
+	font-size: 16pt;
+	text-align: justify;
+	color: #515757;
+}
+
+div#content code {
+	background-color: var(--dark);
+	color: var(--light);
+	font-family: 'Fira Code', monospace;
+	font-size: 14pt;
+}
+
+div#content code.highlighter-rouge {
+	border-radius: 5px;
+	padding: 5px 10px;
+}
+
+div#content pre {
+	background-color: var(--dark);
+	color: var(--light);
+	font-family: 'Fira Code', monospace;
+	font-size: 14pt;
+	padding: 20px;
+
+	border-radius: 5px;
+}
+
+div#content pre .o {
+}
+
+div#content pre .k {
+	color: var(--blue);
+}
+
+div#content pre .ow {
+	color: var(--teal);
+}
+
+div#content pre .s {
+	color: var(--yellow);
+}
+
+div#content pre .nb {
+	color: var(--pink);
+}
+
+div#content pre .c {
+	color: #7C8181;
 }

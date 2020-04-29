@@ -10,9 +10,9 @@ Another interesting use of something that could be interpreted as similarity is 
 
 Alright then, but how to define similarity? That's where networks come in. Biological Networks (or bionets) to be more precise. Now, there are different types of networks, and each of those types has different actual networks that have their upsides and downsides, so I wont get too much into it. But one thing that you can do to establish similarity between two nodes in a network is to use the structure of the network. A simple way to measure this is through the distance between two nodes. Nodes that have an edge between them are probably more similar than nodes that don't. This is an idea that was very strong in Google's original PageRank algorithm: pages were nodes and the edges between them indicated whether or not there was a link from one to the other, pages that were ranked lower initially could have their ranks raised if they were directly connected to pages that ranked highly. But as you probably already suspect, I didn't pull Google and PageRank out of thin air. There is a paper from 2005 (Morrison *et al.*, 2005) investigating exactly what I was talking about before: how to best rank Genes in regards to a given phenotype based on expression data. In it, a method called GeneRank is developed, but I'll let the abstract explain it a little more:
 
-<quote>
+<div class='quote'>
 GeneRank is an intuitive modification of PageRank that maintains many of its mathematical properties. It combines gene expression information with a network structure derived from gene annotations (gene ontologies) or expression profile correlations.
-</quote>
+</div>
 
 So what they did was basically this: the gene expression data gave a natural initial ranking to the genes. Then they used networks that related the genes in order to up the ranks of genes that were more closely related to already well-ranked genes.
 
