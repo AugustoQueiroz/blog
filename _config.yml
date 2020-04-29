@@ -29,7 +29,7 @@ twitter_username: augustosq
 github_username: AugustoQueiroz
 
 # Build settings
-theme: asq
+theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
 
