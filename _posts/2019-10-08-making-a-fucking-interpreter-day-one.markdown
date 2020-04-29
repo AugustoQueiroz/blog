@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: "Making a F*cking Interpreter - Day One"
 date: 2019-10-08 23:35:00 +0200
 categories: dev project cpp
