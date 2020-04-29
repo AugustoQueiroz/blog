@@ -2,6 +2,8 @@
 layout: default
 ---
 
+{% assign psize = site.posts | size %}
+{% if psize  > 0 %}
 <ul id='posts'>
 	{% for post in site.posts %}
 	<li>
@@ -16,3 +18,6 @@ layout: default
 	</li>
 	{% endfor %}
 </ul>
+{% else %}
+Sorry, I haven't produced anything interesting enough to share so far :/
+{% endif %}
