@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+
+		<title>{{ page.title }}</title>
+
+		<link rel='stylesheet' href='{{ site.baseurl }}/assets/css/style.css'>
+
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+		<!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	</head>
+
+	<body>
+		<div id='left-bar'>
+			{% if site.logo_image %}<a href='{{ site.baseurl }}/'><img id='logo' src='{{ site.baseurl }}/assets/images/{{ site.logo_image }}' /></a>{% endif %}
+			<!--ul>
+			{% for page in site.pages %}
+				<li><a href='{{ page.url }}'> =>{{ page.title }}</a></li>
+			{% endfor %}
+			</ul-->
+
+			<div id='links'>
+				{% if site.twitter_username %}<a href='https://twitter.com/{{ site.twitter_username }}'><i class='fab fa-twitter'></i> @{{ site.twitter_username }}</a></br>{% endif %}
+				{% if site.github_username %}<a href='https://github.com/{{ site.github_username }}'><i class='fab fa-github'></i> {{ site.github_username }}</a></br>{% endif %}
+				{% if site.linkedin_username %}<a href='https://linkedin.com/in/augustoqueiroz'><i class='fab fa-linkedin-in'></i> augustoqueiroz</a></br>{% endif %}
+			</div>
+		</div>
+
+		<div id='content'>
+			{{ content }}
+		</div>
+	</body>
+</html>
