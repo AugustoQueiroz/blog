@@ -27,6 +27,7 @@ url: "https://augustoqueiroz.com" # the base hostname & protocol for your site, 
 logo_image: logo.png
 twitter_username: augustosq
 github_username: AugustoQueiroz
+linkedin_username: augustoqueiroz
 
 # Build settings
 theme: minima
