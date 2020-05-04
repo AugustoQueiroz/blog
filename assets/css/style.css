@@ -160,6 +160,14 @@ div#content p {
 	line-height: 150%;
 }
 
+div#content p a {
+	font-family: 'Lora', serif;
+	font-weight: 600;
+	color: var(--dark);
+	text-decoration: none;
+	border-bottom: 2px solid var(--dark);
+}
+
 div#content div.quote {
 	width: 80%;
 	margin: 50px auto;
