@@ -187,22 +187,40 @@ div#content code {
 	background-color: var(--dark);
 	color: var(--light);
 	font-family: 'Fira Code', monospace;
-	font-size: 14pt;
+	font-size: 12pt;
 }
 
 div#content code.highlighter-rouge {
 	border-radius: 5px;
 	padding: 5px 10px;
+	font-size: 12pt;
+}
+
+div#content figure.highlight {
+	width: 100%;
+	margin: 0;
 }
 
 div#content pre {
 	background-color: var(--dark);
 	color: var(--light);
 	font-family: 'Fira Code', monospace;
-	font-size: 14pt;
-	padding: 20px;
-
+	font-size: 12pt;
 	border-radius: 5px;
+	overflow-x: scroll;
+}
+
+div#content pre pre {
+	overflow-x: auto;
+	padding: 0 20px;
+	padding-right: 10px;
+	border-radius: unset;
+}
+
+div#content pre pre.lineno {
+	border-right: 1px solid #515757;
+	color: #515757;
+	text-align: right;
 }
 
 div#content pre .o {
