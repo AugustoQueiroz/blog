@@ -15,9 +15,17 @@ html {
 	--yellow: #FFE74C;
 	--green: #01AF75;
 	--red: #DF2935;
-	--blue: #5BC3EB;
+	--blue: #48ACF0;
 	--pink: #FF99C9;
 	--teal: #4ECDC4;
+}
+
+::-moz-selection {
+	background: var(--yellow);
+}
+::selection {
+	background: var(--blue);
+	color: var(--light)
 }
 
 body {
