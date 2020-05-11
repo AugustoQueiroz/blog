@@ -142,7 +142,8 @@ div#content span.date {
 	padding: 7px 10px;
 	/*padding-top: 10px;*/
 
-	border-radius: 5px;
+	/*border-radius: 5px;*/
+	box-shadow: 5px 5px #272d2d2f;
 }
 
 div#content span.date.tech {
