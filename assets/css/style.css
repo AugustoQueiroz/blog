@@ -144,6 +144,8 @@ div#content span.date {
 
 	/*border-radius: 5px;*/
 	box-shadow: 5px 5px #272d2d2f;
+
+	font-weight: 600;
 }
 
 div#content span.date.tech {
