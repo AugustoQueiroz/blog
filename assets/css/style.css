@@ -121,7 +121,7 @@ div#content ul#posts li a:visited {
 div#content ul#posts li a div {
 	display: inline-block;
 	vertical-align: middle;
-	border-bottom: 5px solid var(--dark);
+	border-bottom: 3px solid var(--dark);
 	width: 100%;
 	padding-bottom: 10px;
 }
