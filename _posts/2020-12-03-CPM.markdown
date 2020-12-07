@@ -1,0 +1,160 @@
+---
+title: 'What are the important tasks?'
+subtitle: ''
+category: tech
+---
+
+When planning a project (specially one with a tight deadline), an important aspect is figuring out which tasks need prioritizing and which don't. While there may well be a lot of different ways to decide which tasks are important and which aren't, one way I find particularly interesting is the critical path method. Not only does it seem hard to debate it's efficacy, but it's also a method that has a pretty simple algorithm to define what tasks should absolutely be finished on time and which have some wiggle room.
+
+## What is the Critical Path Method (CPM)?
+
+The CPM is based on the realization that for many projects there is only a subset of tasks that define the project's duration. That is: you can't postpone any of those tasks without affecting the project's end-date. Here a simple example might be useful. Suppose a project has the following diagram:
+
+![Example project](/assets/images/CPM-1.jpg)
+
+Where each rectangle represents a task, the letter before the colon is the task label, and the number after the colon is the expected duration in days. Two tasks are linked by an arrow if the first is a prerequisite of the second. Lets see what happens when we try to create the tightest possible schedule for our set of tasks
+
+![Possible Cronogram for example project](/assets/images/CPM-2.jpg)
+
+See how we can change the start date of tasks C and E by up to 4 days, or even take longer performing them, without needing to move the 'End' line? But if task B, for example, is late then the whole project gets pushed back. Conversely, we cannot pull the end-date sooner without either reducing the duration, or starting earlier on, tasks A, B, D, and F. These 4 tasks are our critical path. They must absolutely be done in time if we don't want to delay the end of the project.
+
+## A nice little algorithm for finding the critical path of a project in O(n^2)
+#### Where n is the number of tasks in the project.
+
+The idea behing the algorithm is to first set the earliest possible start-date for each task, then set the latest possible start-date that doesn't alter the duration of the task (i.e. the latest possible start-date of the last class is equal to its earliest possible start-date). The critical path is made by all the tasks for which the earliest and latest start-date are the same.
+
+An interesting thing about this algorithm is that we set the earliest start-dates from the earlier tasks to the latter, and we set the latest start dates from the latter to the earliest. That is because we look to the prerequisites of a task to see when is the earliest that they will finish, and then we define how early the task can start based on that: it can start as soon as the last prerequisite is done. To set the latest start-date, however, we look at the latest that tasks coming after if can start, and we find out what is the latest that it can start so that it doesn't delay any of the tasks that depend on it.
+
+In Python and with some OOP:
+
+```python
+class Task:
+    def __init__(self, duration: int, prerequisites: [Task]):
+        self.earliest_start_date = None
+        self.latest_start_date = None
+
+        self.duration = duration
+
+        self.prerequisites = prerequisites
+        self.postrequisites = []
+
+        for prerequisite in self.prerequisites:
+            prerequisite.add_postrequisite(self)
+    
+    def set_earliest_start_date(self):
+        if len(list(filter(lambda task: task.earliest_start_date is None, self.prerequisites))) > 0:
+            raise ValueError
+        prerequisites_end_dates = {task.earliest_start_date + task.duration for task in self.prerequisites}
+        self.earliest_start_date = max(prerequisites_end_dates.union({0}))
+
+    def set_latest_start_date(self):
+        if len(list(filter(lambda task: task.latest_start_date is None, self.postrequisites))) > 0:
+            raise ValueError
+
+        if len(self.postrequisites) == 0:
+            self.latest_start_date = self.earliest_start_date
+        else:
+            postrequisites_end_dates = {task.latest_start_date - self.planned_duration for task in self.postrequisites}
+            self.latest_start_date = min(postrequisites_end_dates)
+```
+
+We define a task as having a duration and a set of prerequisites. We also make it have a list of all the tasks that have itself as a prerequisite (we call those it's postrequisites, though I suspect the term isn't quite right here!). This second list will help us when defining the latest start-date. Notice how when setting the earliest start-date we verify that all the prerequisites already have their start-dates set. This is because suppose the one prerequisite that we haven't found the earliest possible start-date yet is precisely the one that ends the latest? Then we would have an earliest start-date that is entirely worthless. Likewise for setting the latest start-date with the postrequisites. We will make sure that this checks aren't needed in the next piece of code that we'll see, but it's always nice to check anyways! (What if these functions are somehow called from somewhere else?)
+
+```python
+class Project:
+    def __init__(self, tasks):
+        self.tasks = tasks
+    
+    def __calculate_earliest_start_dates(self):
+        tasks_to_set = {task for task in self.tasks if len(task.prerequisites) == 0}
+        tasks_set = set()
+
+        while len(tasks_to_set) > 0:
+            task = tasks_to_set.pop()
+            task.set_earliest_start_date()
+            tasks_set.add(task)
+
+            tasks_to_set.update({task for task in self.tasks if task not in tasks_set and len(task.prerequisites - tasks_set) == 0})
+        
+    def __calculate_latest_start_dates(self):
+        tasks_to_set = {task for task in self.tasks if len(task.postrequisites) == 0}
+        tasks_set = set()
+
+        while len(tasks_to_set) > 0:
+            task = tasks_to_set.pop()
+            task.set_latest_start_date()
+            tasks_set.add(task)
+
+            tasks_to_set.update({task for task in self.tasks if task not in tasks_set and len(task.postrequisites - tasks_set) == 0})
+    
+    def get_critical_path(self):
+        self.__calculate_earliest_start_dates()
+        self.__calculate_latest_start_dates()
+
+        return sorted([task for task in self.tasks if task.earliest_start_date == task.latest_start_date], key=lambda task: task.earliest_start_date)
+```
+
+Our project here is just a list of tasks. We define two internal methods to make the code look a little nicer, but they both behave similarly. We first get a set of tasks: when calculating the earliest start date we want to start from the first tasks that should be performed, so we take the tasks that have no prerequisites; when calculating the latest start-date we want to start from the last tasks we can perform, so we take the tasks that have no postrequisite. We then pop out one of those tasks and set it's earliest/latest possible start-date, then putting it in a set of tasks we know we have already set the start-date for. Finally, we add to the set of tasks we started with all the tasks whose prerequisites have already had their start-date set. The critical path is found by first finding all the earliest possible start-dates, then the latest, and then returning the tasks for which `earliest_start_date == latest_start_date`.
+
+### Why O(n^2)?
+
+The algorithm is O(n^2) because we must go through all the tasks to set their earliest/latest start-dates. But to set the earliest/latest start-date of a task we must look at all of it's prerequisites' or postrequisites' start-dates.
+
+### Bonus: Recursive Implementation
+
+This algorithm could also be implemented recursively if, for example, when setting a task's earliest start-date and we find a prerequisite that hasn't had it's earliest start-date set we ask it to set it. We could then call `set_earliest_start_date` on the tasks that have no postrequisite. They would then ask their prerequisites to set their own earliest start-dates, and those would ask their own prerequisites to do the same, all the way to the tasks with no prerequisites, which would set their earliest start-dates to zero, and then the recursion would bubble back up, resulting in all earliest start-dates to be defined. Analogously, the same could be done for setting the latest start-date starting at the tasks with no prerequisites.
+
+```python
+class Task:
+    def __init__(self, duration: int, prerequisites: [Task]):
+        self.earliest_start_date = None
+        self.latest_start_date = None
+
+        self.duration = duration
+
+        self.prerequisites = prerequisites
+        self.postrequisites = []
+
+        for prerequisite in self.prerequisites:
+            prerequisite.add_postrequisite(self)
+    
+    def set_earliest_start_date(self):
+        self.earliest_start_date = 0
+        for prerequisite in self.prerequisites:
+            if prerequisite.earliest_start_date is None:
+                prerequisite.set_earliest_start_date()
+            if prerequisite.earliest_start_date + prerequisite.duration > self.earliest_start_date:
+                self.earliest_start_date = prerequisite.earliest_start_date + prerequisite.duration
+
+    def set_latest_start_date(self):
+        self.latest_start_date = self.earliest_start_date
+        for postrequisite in self.postrequisites:
+            if postrequisite.latest_start_date is None:
+                postrequisite.set_latest_start_date()
+            if postrequisite.latest_start_date - self.duration < self.latest_start_date:
+                self.latest_start_date = postrequisite.latest_start_date - self.duration
+
+class Project:
+    def __init__(self, tasks):
+        self.tasks = tasks
+    
+    def __calculate_earliest_start_dates(self):
+        tasks_to_set = {task for task in self.tasks if len(task.postrequisites) == 0}
+        for task in tasks_to_set:
+            task.set_earliest_start_date()
+        
+    def __calculate_latest_start_dates(self):
+        tasks_to_set = {task for task in self.tasks if len(task.prerequisites) == 0}
+        for task in tasks_to_set:
+            task.set_latest_start_date()
+    
+    def get_critical_path(self):
+        self.__calculate_earliest_start_dates()
+        self.__calculate_latest_start_dates()
+
+        return sorted([task for task in self.tasks if task.earliest_start_date == task.latest_start_date], key=lambda task: task.earliest_start_date)
+```
+
+#### Pros & Cons
+
+Personally, I think the recursive approach is more elegant conceptually. It also doesn't require the initial check that all prerequisites/postrequisites have had their start-date set, which can be consuming (as this check alone is O(n)). It doesn't allow for the use of Pythons shorthands such as list comprehension and integrated `min` and `max` functions, which are supposed to be optimized. Furthermore, as is the case with recursion, this *could* be memory intensive, which could slow it down. I haven't, however, run any benchmarks on it (maybe I should!!)
