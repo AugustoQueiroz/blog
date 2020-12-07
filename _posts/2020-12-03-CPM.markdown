@@ -12,7 +12,7 @@ The CPM is based on the realization that for many projects there is only a subse
 
 ![Example project](/blog/assets/images/CPM-1.jpg)
 
-Where each rectangle represents a task, the letter before the colon is the task label, and the number after the colon is the expected duration in days. Two tasks are linked by an arrow if the first is a prerequisite of the second. Lets see what happens when we try to create the tightest possible schedule for our set of tasks
+Where each rectangle represents a task, the letter before the colon is the task label, and the number after the colon is the expected duration in days. Two tasks are linked by an arrow if the first is a prerequisite of the second. Lets see what happens when we try to create the tightest possible schedule for our set of tasks...
 
 ![Possible Cronogram for example project](/blog/assets/images/CPM-2.jpg)
 

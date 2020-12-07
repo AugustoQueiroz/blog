@@ -256,3 +256,9 @@ div#content pre .nb {
 div#content pre .c {
 	color: #7C8181;
 }
+
+img {
+	width: 90%;
+	display: block;
+	margin: auto;
+}
