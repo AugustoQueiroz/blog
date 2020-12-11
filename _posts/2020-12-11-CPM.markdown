@@ -97,3 +97,7 @@ Because we're programming in Python here, an obvious question might be why imple
 #### But recursivity iteratively?
 
 That all said, the recursive algorithm could be implemented iteratively, and in that case it might perform better. However, it would still require some not-so-nice design choices that could make it harder to read and understand. Considering that on a project with 1000 tasks (probably a lot more than is realistic for a real-life scenario) had the critical path found in 0.13s, this implementation is more than fine.
+
+#### A P.S. on the iterative solution:
+
+The iterative solution is actully analogous to [Kahn's algorithm](https://en.wikipedia.org/w/index.php?title=Topological_sorting&action=edit&section=3) for topological sorting of a Directed Acyclical Graph (DAG) -- note that out tasks can be seen as a directed acyclical graph, as a cycle in our scenario represents a deadlock: two tasks that cannot be done before the other is done. In Kahn's algorithm the nodes of the graph (our tasks) are taken and placed into a list. In our case this is not necessary, as we don't really need the sorting afterwards, so we can just set the dates as we go. Another way to think about this is that we could first use Kahn's algorithm to generate a topological sorting of the tasks, and then set the start-dates for those tasks following the sorting. However, because the tasks are added to the sorted list already in order, instead of addin them to a sorted list we can, as we do, simply set the start-dates when we would add them to the list.
