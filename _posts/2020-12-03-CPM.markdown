@@ -42,7 +42,8 @@ class Task:
             prerequisite.add_postrequisite(self)
     
     def set_earliest_start_date(self):
-        if len(list(filter(lambda task: task.earliest_start_date is None, self.prerequisites))) > 0:
+        task_missing_start_date = lamda task: task.earliest_start_date is None
+        if len(list(filter(task_missing_start_date, self.prerequisites))) > 0:
             raise ValueError
         prerequisites_end_dates = {task.earliest_start_date + task.duration for task in self.prerequisites}
         self.earliest_start_date = max(prerequisites_end_dates.union({0}))
