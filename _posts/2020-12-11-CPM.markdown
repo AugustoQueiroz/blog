@@ -26,7 +26,7 @@ An interesting thing about this algorithm is that we set the earliest start-date
 
 In Python and with some OOP:
 
-```python
+{% highlight python linenos %}
 class Task:
     def __init__(self, duration: int, prerequisites: [Task]):
         self.earliest_start_date = None
@@ -61,11 +61,11 @@ class Task:
             )
         if len(self.postrequisites) == 0:
             self.latest_start_date = self.earliest_start_date
-```
+{% endhighlight %}
 
 We define a task as having a duration and a set of prerequisites. We also make it have a list of all the tasks that have itself as a prerequisite (we call those it's postrequisites, though I suspect the term isn't quite right here!). This second list will help us when defining the latest start-date. The idea of the algorithm is that the earliest a task can start is the last day of one of it's prerequisites, and the latest a task can start is the first day of one of it's postrequisites. The first task can start, at the earliest, on day 0, and the last task cannot end after the task that has the latest earliest-end-date (earliest-start-date + duration), otherwise it would delay the end of the project. This is a recursive implementation where when we want to set an earliest start-date (or latest) for a task, we look at it's prerequisites (or postrequisites). If their earliest start-date is not set, then we recursively set those. If their end-date is later than what we consider to be the tasks earliest start-date, then we push back the task to start at the earliest at this prerequisite's end-date.
 
-```python
+{% highlight python linenos %}
 class Project:
     def __init__(self, tasks):
         self.tasks = tasks
@@ -86,7 +86,7 @@ class Project:
             ], 
             key=lambda task: task.earliest_start_date
         )
-```
+{% endhighlight %}
 
 Our project here is just a list of tasks. The critical path is found by setting the earliest start-dates for all the tasks that have no *postrequisites*, then the latest start-dates for the tasks that have no *prerequisite*. Because we use a recursive approach, by setting the tasks from each end of the "chronogram", we know that they will recursively set their prerequisites, which will set their prerequisites, and so on, such that all tasks will be set. Then we return the tasks for which `earliest_start_date == latest_start_date`.
 
