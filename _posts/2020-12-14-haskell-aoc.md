@@ -123,9 +123,38 @@ The call to this function is done like so:
 findMissingSeat ourList (head ourList)
 {% endhighlight %}
 
-## Days 6-8: Skipped
+## Days 6 & 7: Skipped
 
-[Day 6](https://adventofcode.com/2020/day/6) I skipped doing in Haskell because, as for day 4, just reading the input seemed like it would be a pita. [Day 7](https://adventofcode.com/2020/day/7) as well. [Day 8](https://adventofcode.com/2020/day/8), although at first it seemed like it could be a very cool one to do in Haskell, I decided to skip because of the `jmp` instruction, which requires going back and forth on a list, and so I new I would end up doing something too imperative.
+[Day 6](https://adventofcode.com/2020/day/6) I skipped doing in Haskell because, as for day 4, just reading the input seemed like it would be a pita. [Day 7](https://adventofcode.com/2020/day/7) as well.
+
+## Day 8: A tape machine & a flawed answer
+
+[Day 8](https://adventofcode.com/2020/day/8) asks us (in part 1) to implement an interpreter for a simple three-operations machine and find the first instruction that is repeated. To do so I ultimately built a tape-based machine in haskell. On a high-level we have a tape with a sequence of instructions, and we want to know what position of the tape we're currently in. We also want to know what instruction we're currently performing. Finally, we have the accumulator, which is just an int we will add to or subtract from. In haskell I encoded this as two lists that represents the tape, such that the head of the second list is the current position of the program on the tape. Each operation is a 3-tuple of type `(String, Int, Bool)`: the operation code, the value to be used by the operation, and the third one is for the specific task of this problem, it simply indicates whether or not the operation has already been performed. We also keep the operation we're currently executing (when e perform a jump we will iteratively move on the tape, so we don't always want to execute the operation at our current position). The code for the tape machine is the following:
+
+{% highlight haskell linenos %}
+executeCode :: [(String, Int, Bool)] -> (String, Int, Bool) -> [(String, Int, Bool)] -> Int -> Int
+executeCode _ (_, _, True) _ acc = acc  -- Found a loop
+executeCode _ (op, val, _) [] acc       -- Reached end of code
+    | op == "nop" = acc
+    | op == "acc" = (acc+val)
+executeCode h (op, val, _) t acc        -- Regular execution
+    | op == "nop" = executeCode (h ++ [(op, val, True)]) (head (tail t)) (tail t) acc
+    | op == "acc" = executeCode (h ++ [(op, val, True)]) (head (tail t)) (tail t) (acc+val)
+    | op == "jmp" && val > 0 = executeCode (h ++ [head t]) (op, val-1, False) (tail t) acc
+    | op == "jmp" && val < 0 = executeCode (init h) (op, val+1, False) (last h:t) acc
+    | op == "jmp" && val == 0 = executeCode h (head t) t acc
+{% endhighlight %}
+
+### The (kinda big) flaw that didn't stop me from using this code to beat part 1
+
+Perhaps you have already noticed it, but the `jmp` instruction is never set to performed (the boolean is never set to `True`). This means that if the code happened to have a `jmp` to `jmp` loop, such as
+
+```
+jmp +1
+jmp -1
+```
+
+This solution would just loop with the program, never producing an answer.
 
 ## Day 9: Nothing of particular interest
 
