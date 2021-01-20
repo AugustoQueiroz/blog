@@ -1,6 +1,6 @@
 ---
 title: 'What are the important tasks?'
-subtitle: ''
+subtitle: 'The answer is "it depends", but here is a post about the Critical Path Method, that helps you recognize the tasks that, if delayed, will make your whole project be late.'
 category: tech
 ---
 
