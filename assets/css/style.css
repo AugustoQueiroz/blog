@@ -219,6 +219,7 @@ div#content pre {
 	font-size: 12pt;
 	border-radius: 5px;
 	overflow-x: scroll;
+	padding: 20px 10px;
 }
 
 div#content pre pre {
