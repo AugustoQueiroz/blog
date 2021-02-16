@@ -4,7 +4,7 @@ subtitle: 'inb4: Yeah, my internet sucks'
 category: tech
 ---
 
-I found myself on the [speedtest.net](https://speedtest.net) site recently, and for the first time I noticed they have apps on all major platforms... as well as a cli for linux. Cool, this means I'm halfway done on an old project I had of logging my internet speeds throughout the day to check whether or not my ISP was managing to deliver the (already abysmal enough) 25Mbps they promise. Actually, halfway there is definitely understating it. The cli allows you to run a speedtest from the command line (no duh), and it has an argument for defining what format you want the output to be in, between human-readable (that is actually quite pretty, imo), csv, tsv, json, jsonl, and json-pretty. So
+I found myself on the [speedtest.net](https://speedtest.net) site recently, and for the first time I noticed they have apps on all major platforms... as well as a cli for linux (you can find the instructions for installing it [here](https://www.speedtest.net/apps/cli)). Cool, this means I'm halfway done on an old project I had of logging my internet speeds throughout the day to check whether or not my ISP was managing to deliver the (already abysmal enough) 25Mbps they promise. Actually, halfway there is definitely understating it. The cli allows you to run a speedtest from the command line (no duh), and it has an argument for defining what format you want the output to be in, between human-readable (that is actually quite pretty, imo), csv, tsv, json, jsonl, and json-pretty. So
 
 {% highlight bash %}
 $ speedtest -f json >> results
