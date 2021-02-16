@@ -21,7 +21,7 @@ Description=Internet Speed Logger
 [Service]
 User=pi
 Type=oneshot
-ExecStart=speedtest -f json >> /path/to/results_file
+ExecStart=/usr/bin/sh -C 'speedtest -f json >> /path/to/results_file'
 {% endhighlight %}
 
 Here I'm saying I want the command above to be run once when the service is started. An important thing is that I want the user to be set to my own user, otherwise I wouldn't have write permission to my own file. The `.timer` file follows:
@@ -62,3 +62,7 @@ Because the jsonl format that `speedtest` outputs to is a lot more verbose than 
 ### 2. `journalctl -u <your_service_name>` is your friend
 
 In case there are any errors with your service file, or with your service itself, this is how you can get the logs from it. And, actually, remember: this is where you can get the logs of whatever program you set to run. So be mindful of what and how you're logging!
+
+### 3. There may be other options to replace `speedtest`
+
+A friend has found out that on arch the package `speedtest-cli` works as well, but is open source. If for some reason you don't want to use the Ookla speedtest, or if you can't manage to install it on your distro, you can check out your package managers repos to see if there is an alternative. This might slightly change how the cli is used: with the arch package instead of passing `-f json` to get the result as a json you should use `--json`.
