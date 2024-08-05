@@ -1,6 +1,5 @@
-/*@import url('https://rsms.me/inter/inter.css');*/
 @import url('https://fonts.googleapis.com/css2?family=Alata&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-html {}
+/*html {}*/
 
 html {
 	font-family: 'Noto Sans', sans-serif; 
@@ -115,8 +114,7 @@ div#content ul#posts li {
 	margin-bottom: 50px;
 }
 
-div#content ul#posts li span {
-}
+/*div#content ul#posts li span {}*/
 
 div#content ul#posts li a {
 	text-decoration: none;
@@ -135,8 +133,7 @@ div#content ul#posts li a div {
 	padding-bottom: 10px;
 }
 
-div#content ul#posts li a h1 {
-}
+/*div#content ul#posts li a h1 {}*/
 
 div#content ul#posts li a h2 {
 	font-weight: normal;
@@ -239,8 +236,7 @@ div#content pre pre.lineno {
 	text-align: right;
 }
 
-div#content pre .o {
-}
+/*div#content pre .o {}*/
 
 div#content pre .k {
 	color: var(--blue);
