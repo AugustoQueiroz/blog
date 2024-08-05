@@ -39,7 +39,7 @@ body {
 
 h1.title {
 	font-family: 'Alata', 'Noto Sans', sans-serif;
-	font-size: 40px;
+	font-size: 30px;
 	font-weight: 500;
 	margin-bottom: 0;
 	margin: 0;
@@ -47,13 +47,14 @@ h1.title {
 
 h2 {
 	font-size: 25px;
-	color: #676C6C;
+	color: var(--dark);
 	font-family: 'Alata', 'Noto Sans', sans-serif;
+	margin-top: 60px;
 }
 
 h2.subtitle {
 	font-family: 'Noto Sans', sans-serif;
-	font-size: 25px;
+	font-size: 23px;
 	font-weight: normal;
 	color: #676C6C;
 	margin-top: 10px;
@@ -175,10 +176,20 @@ div#content p {
 div#content p a {
 	font-family: 'Lora', serif;
 	font-weight: 600;
+	font-style: italic;
 	color: var(--dark);
 	text-decoration: none;
-	border-bottom: 2px solid var(--dark);
+	background-color: #fff;
 }
+
+div#content p a:hover {
+	background-color: #EBF1F6;
+	transition-duration: 0.2s;
+}
+
+/*div#content p a:visited:hover {
+	background-color: #FBE7EE;
+}*/
 
 div#content div.quote {
 	width: 80%;
