@@ -1,8 +1,9 @@
-@import url('https://rsms.me/inter/inter.css')
+/*@import url('https://rsms.me/inter/inter.css');*/
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 html {}
 
 html {
-	font-family: 'Inter', sans-serif; 
+	font-family: 'Noto Sans', sans-serif; 
 	font-variant-ligatures: contextual;
     -moz-font-feature-settings: "calt";
     -webkit-font-feature-settings: "calt";
@@ -38,23 +39,22 @@ body {
 }
 
 h1.title {
-	font-family: 'Lora', serif;
-	font-size: 35pt;
+	font-family: 'Alata', 'Noto Sans', sans-serif;
+	font-size: 40px;
 	font-weight: 500;
 	margin-bottom: 0;
 	margin: 0;
-	margin-top: 10px;
 }
 
 h2 {
-	font-size: 20pt;
+	font-size: 25px;
 	color: #676C6C;
-	font-family: 'Lora', serif;
+	font-family: 'Alata', 'Noto Sans', sans-serif;
 }
 
 h2.subtitle {
-	font-family: 'Inter', sans-serif;
-	font-size: 20pt;
+	font-family: 'Noto Sans', sans-serif;
+	font-size: 25px;
 	font-weight: normal;
 	color: #676C6C;
 	margin-top: 10px;
@@ -69,14 +69,15 @@ div#left-bar {
 	
 	text-align: right;
 
-	font-size: 16pt;
+	font-size: 20px;
 }
 
 div#left-bar img#logo {
 	width: 100px;
+	float: right;
 }
 
-div#left-bar div {
+div#left-bar div#links {
 	position: absolute;
 	bottom: 0;
 	right: 0;
@@ -145,7 +146,10 @@ div#content h2.title {
 	margin-top: 0;
 }
 
-div#content span.date {
+div#content div.date {
+	display: inline-block;
+	margin-bottom: 10px;
+
 	background-color: var(--yellow);
 	padding: 7px 10px;
 	/*padding-top: 10px;*/
@@ -156,7 +160,7 @@ div#content span.date {
 	font-weight: 600;
 }
 
-div#content span.date.tech {
+div#content div.date.tech {
 	background-color: var(--green);
 	color: var(--light);
 }
@@ -166,7 +170,7 @@ div#content img.header-image {
 }
 
 div#content p {
-	font-size: 16pt;
+	font-size: 20px;
 	text-align: justify;
 	line-height: 150%;
 }
@@ -183,7 +187,7 @@ div#content div.quote {
 	width: 80%;
 	margin: 50px auto;
 	font-family: 'Lora', serif;
-	font-size: 16pt;
+	font-size: 20px;
 	text-align: justify;
 	color: #515757;
 	line-height: 150%;
@@ -197,14 +201,14 @@ div#content code {
 
 	background-color: var(--dark);
 	color: var(--light);
-	font-family: 'Fira Code', monospace;
-	font-size: 12pt;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 15px;
 }
 
 div#content code.highlighter-rouge {
 	border-radius: 5px;
 	padding: 5px 10px;
-	font-size: 12pt;
+	font-size: 15px;
 }
 
 div#content figure.highlight {
@@ -215,8 +219,8 @@ div#content figure.highlight {
 div#content pre {
 	background-color: var(--dark);
 	color: var(--light);
-	font-family: 'Fira Code', monospace;
-	font-size: 12pt;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 15px;
 	border-radius: 5px;
 	overflow-x: scroll;
 	padding: 20px 10px;

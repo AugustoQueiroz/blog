@@ -36,9 +36,14 @@
 			</ul-->
 
 			<div id='links'>
+				<p><a href='{{ site.baseurl }}/saved-links.html'><i class='fas fa-bookmark'></i> My Saved Links</a></p>
+
+				<hr>
+
 				{% if site.twitter_username %}<a href='https://twitter.com/{{ site.twitter_username }}'><i class='fab fa-twitter'></i> @{{ site.twitter_username }}</a></br>{% endif %}
 				{% if site.github_username %}<a href='https://github.com/{{ site.github_username }}'><i class='fab fa-github'></i> {{ site.github_username }}</a></br>{% endif %}
-				{% if site.linkedin_username %}<a href='https://linkedin.com/in/augustoqueiroz'><i class='fab fa-linkedin-in'></i> augustoqueiroz</a></br>{% endif %}
+				{% if site.linkedin_username %}<a href='https://linkedin.com/in/{{ site.linkedin_username }}'><i class='fab fa-linkedin-in'></i> {{ site.linkedin_username }}</a></br>{% endif %}
+				{% if site.goodreads_username %}<a href='https://goodreads.com/{{ site.goodreads_username }}'><i class='fab fa-goodreads'></i> {{ site.goodreads_username }}</a></br>{% endif %}
 			</div>
 		</div>
 

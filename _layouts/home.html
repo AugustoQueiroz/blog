@@ -7,7 +7,7 @@ layout: default
 <ul id='posts'>
 	{% for post in site.posts %}
 	<li>
-		<span class='date {% if post.category %}{{ post.category }}{% endif %}'>{{ post.date | date: '%d/%m/%Y' }}</span>
+		<div class='date {% if post.category %}{{ post.category }}{% endif %}'>{{ post.date | date: '%d/%m/%Y' }}</div>
 		<a href='{{ site.baseurl }}{{ post.url }}'>
 			<div>
 				<h1 class='title'>{{ post.title }}</h1>
